@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* Design system ported from MyBridge 3.0 (src/app/globals.css). */
+
+/* Class-based dark mode: `dark:` utilities apply anywhere inside `.dark`. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #eef2f7;
+  --foreground: #111827;
+  --brand: #1d4e89;
+  --brand-dark: #163a66;
+  --font-sans-family: "Plus Jakarta Sans";
+  --font-mono-family: "JetBrains Mono";
+}
+
+.dark {
+  --background: #0b1220;
+  --foreground: #e5e7eb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-mono-family), ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+/* ------------------------------------------------------------------
+   Global dark-mode skin: unlayered, so under `.dark` these beat the
+   gray/white utilities. Palette: page #0b1220 < card #111827 < nested #1f2937.
+   ------------------------------------------------------------------ */
+.dark .bg-white { background-color: #111827; }
+.dark .bg-gray-50,
+.dark .bg-gray-100 { background-color: #1f2937; }
+.dark .bg-gray-50\/80,
+.dark .bg-gray-50\/60,
+.dark .bg-gray-50\/50 { background-color: rgb(31 41 55 / 0.5); }
+.dark .hover\:bg-gray-50:hover,
+.dark .hover\:bg-gray-100:hover { background-color: #1f2937; }
+.dark .border-gray-100,
+.dark .border-gray-200 { border-color: #1f2937; }
+.dark .border-gray-300 { border-color: #374151; }
+.dark .text-gray-900 { color: #f3f4f6; }
+.dark .text-gray-800,
+.dark .text-gray-700 { color: #e5e7eb; }
+.dark .text-gray-600,
+.dark .text-gray-500 { color: #9ca3af; }
+.dark .text-gray-400 { color: #6b7280; }
+.dark input::placeholder { color: #6b7280; }
+.dark .bg-green-50,
+.dark .bg-teal-50 { background-color: rgb(6 78 59 / 0.30); }
+.dark .bg-red-50,
+.dark .bg-rose-50 { background-color: rgb(136 19 55 / 0.30); }
+.dark .bg-amber-50 { background-color: rgb(120 53 15 / 0.35); }
+.dark .text-green-700, .dark .text-teal-700 { color: #99f6e4; }
+.dark .text-red-700, .dark .text-rose-700 { color: #fecaca; }
+.dark .text-amber-800, .dark .text-amber-700 { color: #fde68a; }
+.dark .text-brand { color: color-mix(in oklch, var(--brand) 42%, white); }
+.dark input, .dark select { color-scheme: dark; }
+
+.table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+.table-responsive > table { min-width: max-content; }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 { letter-spacing: -0.011em; }
+
+:where(a, button, [role="button"]):focus-visible,
+:where(input, select, textarea):focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+.dark :where(a, button, [role="button"]):focus-visible,
+.dark :where(input, select, textarea):focus-visible { outline-color: #5b8fd0; }
+
+:where(a, button, [role="button"]) {
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+}
+
+::selection { background: rgb(29 78 137 / 0.18); }
+
+* { scrollbar-width: thin; scrollbar-color: rgba(148, 163, 184, 0.5) transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: rgba(148, 163, 184, 0.45); border-radius: 9999px; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Brand conic-gradient spinner. */
+@keyframes mb-spin { to { transform: rotate(360deg); } }
